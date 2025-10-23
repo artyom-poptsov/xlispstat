@@ -1,6 +1,8 @@
 /* X11graph - X11 support for XLISP-STAT                               */
 /* XLISP-STAT 2.1 Copyright (c) 1990, by Luke Tierney                  */
 /* Additions to Xlisp 2.1, Copyright (c) 1989 by David Michael Betz    */
+/* Additions to XLISP-STAT 2.1, Copyright (c) 2025,                    */
+/* by Artyom V. Poptsov <poptsov.artyom@gmail.com>                     */
 /* You may give out copies of this software; for conditions see the    */
 /* file COPYING included with this distribution.                       */
 
@@ -23,8 +25,8 @@ extern VOID InstallMenuButton P2H(Window, LVAL);
 extern VOID DeleteMenuButton P1H(Window);
 extern VOID StX11FinishMenus(V);
 extern VOID StX11FinishDialogs(V);
-extern StX11InitMenus(V);
-extern StX11InitDialogs(V);
+extern void StX11InitMenus(V);
+extern void StX11InitDialogs(V);
 
 extern char *getenv();
 
@@ -316,7 +318,7 @@ int StBlockForInput()
       if (tmp > maxfd) maxfd = tmp;
       FD_SET(maxfd, &readmask);
     }
-    result = select(maxfd+1, (int *) &readmask, NULL, NULL, NULL);
+    result = select(maxfd+1, &readmask, NULL, NULL, NULL);
     return((FD_ISSET(fileno(stdin), &readmask)) ? TRUE : FALSE);
   }
   else return(FALSE);
@@ -1221,6 +1223,7 @@ VOID StWGetLocation(w, left, top, frame)
 VOID StWSetSize(w, width, height, frame)
      Window w;
      int width, height;
+     int frame;
 {
   Display *dpy = StX11Display();
   StGWWinInfo *gwinfo;
@@ -1286,6 +1289,7 @@ VOID StWGetSize(w, pwidth, pheight, frame)
 VOID StGWSetSize(gwinfo, width, height, frame)
      StGWWinInfo *gwinfo;
      int width, height;
+     int frame;
 {
   Window w;
   if (gwinfo == NULL || (w = gwinfo->window) == NullWindow) return;

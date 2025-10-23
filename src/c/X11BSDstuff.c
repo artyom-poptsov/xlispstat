@@ -3,6 +3,8 @@
 /* Additions to Xlisp 2.1, Copyright (c) 1989 by David Michael Betz    */
 /* You may give out copies of this software; for conditions see the    */
 /* file COPYING included with this distribution.                       */
+/* Additions to XLISP-STAT 2.1, Copyright (c) 2025,                    */
+/* by Artyom V. Poptsov <poptsov.artyom@gmail.com>                     */
 /*                                                                     */
 /* Some modifications included from WINTERP                            */
 /* WINTERP 1.0 Copyright 1989 Hewlett-Packard Company (by Niels Mayer).*/
@@ -549,7 +551,7 @@ LOCAL int line_available()
   FD_ZERO(&readmask);
   FD_SET(fileno(stdin), &readmask);
 
-  result = select(ndfs, (int *) &readmask, NULL, NULL, &tv);
+  result = select(ndfs, &readmask, NULL, NULL, &tv);
   if (result > 0) return(TRUE);
   /* *** should merge the select here with the one for blocking ***/
   else return(StBlockForInput());

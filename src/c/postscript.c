@@ -9,6 +9,7 @@
 /* pbmtops.c - read a portable bitmap and produce a PostScript bitmap file
 **
 ** Copyright (C) 1988 by Jef Poskanzer.
+** Copyright (C) 2025 by Artyom V. Poptsov <poptsov.artyom@gmail.com>
 **
 ** Permission to use, copy, modify, and distribute this software and its
 ** documentation for any purpose and without fee is hereby granted, provided
@@ -60,7 +61,7 @@ static FILE *fp;
 /**************************************************************************/
 
 /* set up global variables and print the postscript preamble */
-psputinit(file, cols, rows, scale )
+void psputinit(file, cols, rows, scale )
      FILEP file;
      int cols, rows;
      double scale;
@@ -120,7 +121,7 @@ psputinit(file, cols, rows, scale )
 }
 
 /* enter a bit into the image */
-psputbit(b)
+void psputbit(b)
      int b;
 {
   if ( bitsperitem == 8 ) {
@@ -133,7 +134,7 @@ psputbit(b)
 }
 
 /* clean up and print the showpage command */
-psputrest( )
+void psputrest( )
 {
   if ( bitsperitem > 0 )
     putitem( );

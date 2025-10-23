@@ -3,6 +3,8 @@
 /* Additions to Xlisp 2.1, Copyright (c) 1989 by David Michael Betz    */
 /* You may give out copies of this software; for conditions see the    */
 /* file COPYING included with this distribution.                       */
+/* Additions to XLISP-STAT 2.1, Copyright (c) 2025,                    */
+/* by Artyom V. Poptsov <poptsov.artyom@gmail.com>                     */
  
 #include "xlisp.h"
 #include "xlstat.h"
@@ -29,7 +31,7 @@ LOCAL VOID getpoisarg P1H(double *);
 LOCAL double poisson_cdf P2H(int, double);
 LOCAL int binomial_quant P3H(double, int, double);
 LOCAL int poisson_quant P2H(double, double);
-LOCAL poisson_rand P1H(double);
+LOCAL int poisson_rand P1H(double);
 LOCAL int binomial_rand P2H(int, double);
 
 /* numerical distribution function */

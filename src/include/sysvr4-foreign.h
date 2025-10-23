@@ -16,7 +16,7 @@ LOCAL VOID link_and_load(fname, libs, fort)
      char *fname, *libs;
      int fort;
 {
-  static initialized = FALSE;
+  static int initialized = FALSE;
   void *handle;
 
   if (! initialized) {

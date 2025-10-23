@@ -237,7 +237,7 @@ static VOID IViewBasicPointsSetTransformation P2C(IViewBasicPoints, p, double **
 static VOID IViewBasicPointsApplyTransformation P3C(IViewBasicPoints, p,
                                                     double **, a, int *, inbasis)
 {
-  static maxvars = 0;
+  static int maxvars = 0;
   static Fixed **b, *x, **screen_data, *screen_location;
   int vars, n, i, j;
   double *scale = p->scale, *location = p->location;

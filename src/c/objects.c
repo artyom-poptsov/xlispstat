@@ -3,7 +3,9 @@
 /* Additions to Xlisp 2.1, Copyright (c) 1989 by David Michael Betz    */
 /* You may give out copies of this software; for conditions see the    */
 /* file COPYING included with this distribution.                       */
- 
+/* Additions to XLISP-STAT 2.1, Copyright (c) 2025,                    */
+/* by Artyom V. Poptsov <poptsov.artyom@gmail.com>                     */
+
 #include "xlisp.h"
 #include "xlstat.h"
 
@@ -1260,7 +1262,7 @@ LVAL xsobject_isnew(V)
 VOID xsaddmsg P2C(LVAL, object, char *, str)
 {
   LVAL fcn;
-  static offset = FIRST_METHOD_OFFSET;
+  static int offset = FIRST_METHOD_OFFSET;
 
   xlsave1(fcn);
   fcn = cvsubr(funtab[offset].fd_subr,funtab[offset].fd_type,offset);
